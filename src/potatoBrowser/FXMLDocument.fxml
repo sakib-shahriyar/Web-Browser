@@ -19,7 +19,7 @@
          <effect>
             <Glow />
          </effect></WebView>
-      <ToolBar layoutX="14.0" layoutY="56.0" prefHeight="35.0" prefWidth="391.0">
+      <ToolBar layoutX="14.0" layoutY="56.0" prefHeight="35.0" prefWidth="410.0">
         <items>
           <Button fx:id="btnReddit" mnemonicParsing="false" onAction="#redditButtonAction" text="Reddit" />
             <Button fx:id="btnGoogle" mnemonicParsing="false" onAction="#googleButtonAction" text="Google" />
@@ -31,5 +31,7 @@
         </items>
       </ToolBar>
       <ProgressIndicator fx:id="pi" layoutX="576.0" layoutY="44.0" progress="0.0" />
+      <Button fx:id="buttonBack" layoutX="461.0" layoutY="44.0" mnemonicParsing="false" onAction="#backButtonAction" text="&lt;" />
+      <Button fx:id="buttonFront" layoutX="493.0" layoutY="44.0" mnemonicParsing="false" onAction="#frontButtonAction" text="&gt;" />
    </children>
 </AnchorPane>
