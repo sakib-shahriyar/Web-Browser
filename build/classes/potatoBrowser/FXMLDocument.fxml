@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.text.*?>
 <?import javafx.scene.effect.*?>
 <?import javafx.scene.web.*?>
 <?import java.lang.*?>
@@ -10,11 +11,11 @@
 
 <AnchorPane id="AnchorPane" prefHeight="618.0" prefWidth="619.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="potatoBrowser.FXMLDocumentController">
    <children>
-      <TextField fx:id="textFieldUrl" layoutX="14.0" layoutY="19.0" onAction="#handleButtonAction" prefHeight="25.0" prefWidth="504.0">
+      <TextField fx:id="textFieldUrl" layoutX="14.0" layoutY="19.0" onAction="#handleButtonAction" prefHeight="25.0" prefWidth="446.0">
          <effect>
             <Glow />
          </effect></TextField>
-      <Button fx:id="buttonGo" layoutX="531.0" layoutY="19.0" mnemonicParsing="false" onAction="#handleButtonAction" text="Go" />
+      <Button fx:id="buttonGo" layoutX="466.0" layoutY="19.0" mnemonicParsing="false" onAction="#handleButtonAction" text="Go" />
       <WebView fx:id="webView" layoutY="92.0" prefHeight="526.0" prefWidth="619.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="92.0">
          <effect>
             <Glow />
@@ -30,6 +31,12 @@
             <Button fx:id="btnYoutube" mnemonicParsing="false" onAction="#tubeButtonAction" text="Youtube" />
         </items>
       </ToolBar>
-      <ProgressIndicator fx:id="pi" layoutX="576.0" layoutY="44.0" progress="0.0" />
+      <ProgressIndicator fx:id="pi" layoutX="578.0" layoutY="54.0" progress="0.0" />
+      <Pane fx:id="historyPane" layoutX="4.0" layoutY="98.0" prefHeight="524.0" prefWidth="613.0">
+         <children>
+            <TextArea fx:id="historyTextArea" prefHeight="524.0" prefWidth="613.0" />
+         </children>
+      </Pane>
+      <Button fx:id="btnHistory" layoutX="524.0" layoutY="19.0" mnemonicParsing="false" onAction="#historyButtonAction" text="History" />
    </children>
 </AnchorPane>

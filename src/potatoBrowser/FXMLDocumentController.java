@@ -22,7 +22,9 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.ProgressIndicator;
+import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
+import javafx.scene.layout.Pane;
 import javafx.scene.web.WebEngine;
 import javafx.scene.web.WebView;
 
@@ -38,7 +40,6 @@ public class FXMLDocumentController implements Initializable {
     private Button buttonGo;
     @FXML
     private WebView webView;
-    @FXML
     private WebEngine web;
     @FXML
     private Button btnReddit;
@@ -56,19 +57,33 @@ public class FXMLDocumentController implements Initializable {
     private Button btnGag;
     @FXML
     private Button btnYoutube;
+    @FXML
+    private Pane historyPane;
+    @FXML
+    private Button btnHistory;
     
-    //private static Vector<String> vec = new Vector<String>(12);
+    private static Vector<String> vec = new Vector();
+    @FXML
+    private TextArea historyTextArea;
 
     @FXML
     private void handleButtonAction(ActionEvent event) throws FileNotFoundException, IOException {
+        
+        String vecStr = textFieldUrl.getText().startsWith("http://") || textFieldUrl.getText().startsWith("https://") ? textFieldUrl.getText() : "http://" + textFieldUrl.getText();
+        historyPane.setVisible(false);
+        historyTextArea.setVisible(false);
+        webView.setVisible(true);
         pi.progressProperty().bind(web.getLoadWorker().progressProperty());
         web.load(textFieldUrl.getText().startsWith("http://") || textFieldUrl.getText().startsWith("https://") ? textFieldUrl.getText() : "http://" + textFieldUrl.getText());
+        vec.addElement(vecStr);
+        
     }  
     
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
-        
+        historyPane.setVisible(false);
+        historyTextArea.setVisible(false);
         web = webView.getEngine();
         web.setJavaScriptEnabled(true);
         web.locationProperty().addListener(new ChangeListener<String>() {
@@ -92,7 +107,7 @@ public class FXMLDocumentController implements Initializable {
        
         pi.progressProperty().bind(web.getLoadWorker().progressProperty());
         web.load("https://www.google.com");
-     
+        vec.addElement("https://www.google.com");
     }
 
     @FXML
@@ -135,5 +150,20 @@ public class FXMLDocumentController implements Initializable {
     private void tubeButtonAction(ActionEvent event) {
         textFieldUrl.setText("http://www.youtube.com");
         buttonGo.fire();
+    }
+
+    @FXML
+    private void historyButtonAction(ActionEvent event) {
+        webView.setVisible(false);
+        historyPane.setVisible(true);
+        historyTextArea.setVisible(true);
+        historyTextArea.setEditable(false);
+        String str = "", last ="\n";
+        
+        for (int i = 0; i < vec.size(); i++) {
+               str = str + vec.elementAt(i) + last;
+            //   System.out.println(vec.elementAt(i));
+        }        
+        historyTextArea.setText(str);
     }
 }
