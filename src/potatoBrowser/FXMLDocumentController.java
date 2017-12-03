@@ -68,20 +68,20 @@ public class FXMLDocumentController implements Initializable {
 
     @FXML
     private void handleButtonAction(ActionEvent event) throws FileNotFoundException, IOException {
-        
-        String vecStr = textFieldUrl.getText().startsWith("http://") || textFieldUrl.getText().startsWith("https://") ? textFieldUrl.getText() : "http://" + textFieldUrl.getText();
+      
         historyPane.setVisible(false);
         historyTextArea.setVisible(false);
         webView.setVisible(true);
         pi.progressProperty().bind(web.getLoadWorker().progressProperty());
         web.load(textFieldUrl.getText().startsWith("http://") || textFieldUrl.getText().startsWith("https://") ? textFieldUrl.getText() : "http://" + textFieldUrl.getText());
-        vec.addElement(vecStr);
+        
         
     }  
     
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
+       // historyGenerate();
         historyPane.setVisible(false);
         historyTextArea.setVisible(false);
         web = webView.getEngine();
@@ -94,20 +94,23 @@ public class FXMLDocumentController implements Initializable {
         });
         
         
-            web.getLoadWorker().stateProperty().addListener(
+        web.getLoadWorker().stateProperty().addListener(
             new ChangeListener<Worker.State>() {
             @Override
-            public void changed (ObservableValue<? extends Worker.State> observable, Worker.State oldValue, Worker.State newValue) {
-                if(newValue == Worker.State.SUCCEEDED){
-                   // System.out.println("Location loaded + " + web.getLocation());
-                }
+                public void changed (ObservableValue<? extends Worker.State> observable, Worker.State oldValue, Worker.State newValue) {
+                    
+                    if(newValue == Worker.State.SUCCEEDED){
+                        //System.out.println("Location loaded + " + web.getLocation());
+                        historyGenerate();
+                    }
+                    
                    // throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-            }
+                }
         });
        
         pi.progressProperty().bind(web.getLoadWorker().progressProperty());
         web.load("https://www.google.com");
-        vec.addElement("https://www.google.com");
+        //vec.addElement("https://www.google.com");
     }
 
     @FXML
@@ -165,5 +168,10 @@ public class FXMLDocumentController implements Initializable {
             //   System.out.println(vec.elementAt(i));
         }        
         historyTextArea.setText(str);
+    }
+    
+    private void historyGenerate(){
+        String vecStr = textFieldUrl.getText().startsWith("http://") || textFieldUrl.getText().startsWith("https://") ? textFieldUrl.getText() : "http://" + textFieldUrl.getText();
+        vec.addElement(vecStr);
     }
 }
