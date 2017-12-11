@@ -9,7 +9,7 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<AnchorPane id="AnchorPane" prefHeight="618.0" prefWidth="619.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="potatoBrowser.FXMLDocumentController">
+<AnchorPane id="AnchorPane" prefHeight="624.0" prefWidth="683.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="potatoBrowser.FXMLDocumentController">
    <children>
       <TextField fx:id="textFieldUrl" layoutX="14.0" layoutY="19.0" onAction="#handleButtonAction" prefHeight="25.0" prefWidth="446.0">
          <effect>
@@ -31,12 +31,13 @@
             <Button fx:id="btnYoutube" mnemonicParsing="false" onAction="#tubeButtonAction" text="Youtube" />
         </items>
       </ToolBar>
-      <ProgressIndicator fx:id="pi" layoutX="578.0" layoutY="54.0" progress="0.0" />
-      <Pane fx:id="historyPane" layoutX="4.0" layoutY="98.0" prefHeight="524.0" prefWidth="613.0">
+      <ProgressIndicator fx:id="pi" layoutX="644.0" layoutY="19.0" progress="0.0" />
+      <Pane fx:id="historyPane" layoutX="4.0" layoutY="98.0" prefHeight="524.0" prefWidth="683.0">
          <children>
-            <TextArea fx:id="historyTextArea" prefHeight="524.0" prefWidth="613.0" />
+            <TextArea fx:id="historyTextArea" prefHeight="524.0" prefWidth="683.0" />
          </children>
       </Pane>
       <Button fx:id="btnHistory" layoutX="524.0" layoutY="19.0" mnemonicParsing="false" onAction="#historyButtonAction" text="History" />
+      <Button fx:id="btnReturn" layoutX="525.0" layoutY="19.0" mnemonicParsing="false" onAction="#returnButtonAction" text="Return" />
    </children>
 </AnchorPane>

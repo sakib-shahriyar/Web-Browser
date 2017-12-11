@@ -65,6 +65,8 @@ public class FXMLDocumentController implements Initializable {
     private static Vector<String> vec = new Vector();
     @FXML
     private TextArea historyTextArea;
+    @FXML
+    private Button btnReturn;
 
     @FXML
     private void handleButtonAction(ActionEvent event) throws FileNotFoundException, IOException {
@@ -84,6 +86,7 @@ public class FXMLDocumentController implements Initializable {
        // historyGenerate();
         historyPane.setVisible(false);
         historyTextArea.setVisible(false);
+        btnReturn.setVisible(false);
         web = webView.getEngine();
         web.setJavaScriptEnabled(true);
         web.locationProperty().addListener(new ChangeListener<String>() {
@@ -161,6 +164,7 @@ public class FXMLDocumentController implements Initializable {
         historyPane.setVisible(true);
         historyTextArea.setVisible(true);
         historyTextArea.setEditable(false);
+        btnReturn.setVisible(true);
         String str = "", last ="\n";
         
         for (int i = 0; i < vec.size(); i++) {
@@ -170,8 +174,19 @@ public class FXMLDocumentController implements Initializable {
         historyTextArea.setText(str);
     }
     
+    @FXML
+    private void returnButtonAction(ActionEvent event) {
+        btnHistory.setVisible(true);
+        btnReturn.setVisible(false);
+        webView.setVisible(true);
+        historyPane.setVisible(false);
+        historyTextArea.setVisible(false);
+        historyTextArea.setEditable(false);
+    }
+    
     private void historyGenerate(){
         String vecStr = textFieldUrl.getText().startsWith("http://") || textFieldUrl.getText().startsWith("https://") ? textFieldUrl.getText() : "http://" + textFieldUrl.getText();
         vec.addElement(vecStr);
     }
+    
 }
